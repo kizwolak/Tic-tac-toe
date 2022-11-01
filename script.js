@@ -13,4 +13,8 @@ gameBoard.forEach(cell => {
     let cellDiv = document.createElement('div');
     cellDiv.textContent = cell;
     container.appendChild(cellDiv);
+    cellDiv.addEventListener('click', () => {
+        cellDiv.textContent = "X";
+    });
 });
+
