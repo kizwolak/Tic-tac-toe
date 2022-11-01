@@ -6,7 +6,8 @@ const gameBoard = (() => {
 
 const Player = (name) => {
     let playerName = name;
-    return {playerName};
+    let turn = Math.random();
+    return {playerName, turn};
 };
 
 gameBoard.forEach(cell => {
@@ -32,3 +33,14 @@ gameBoard.forEach(cell => {
 (() => {
     return turn = 0;
 })();
+
+const randomTurn = (p1, p2) => {
+    if (p1.turn > p2.turn) {
+        p1.turn = 0;
+        p2.turn = 1;
+    }
+    if (p1.turn < p2.turn) {
+        p1.turn = 1;
+        p2.turn = 0;
+    }
+};
