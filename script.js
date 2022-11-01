@@ -26,9 +26,7 @@ gameBoard.forEach(cell => {
         };
     }
 
-    cellDiv.addEventListener('click', () => {
-        turnMarker();
-    });
+    cellDiv.addEventListener('click', turnMarker);
 });
 
 (() => {
