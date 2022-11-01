@@ -7,40 +7,50 @@ const gameBoard = (() => {
 const Player = (name) => {
     let playerName = name;
     let turn = Math.random();
-    return {playerName, turn};
+    let cells = [];
+    let marker;
+    return {playerName, turn, cells, marker};
 };
+
+const p1 = Player("Mary");
+const p2 = Player("Jane");
 
 gameBoard.forEach(cell => {
     let cellDiv = document.createElement('div');
     cellDiv.textContent = cell;
     container.appendChild(cellDiv);
 
-    const turnMarker = () => {
-        if (turn == 0) {
-            cellDiv.textContent = "O",
-            turn = 1;
-            cellDiv.removeEventListener('click', turnMarker);
-        } else if (turn == 1) {
-            cellDiv.textContent = "X",
-            turn = 0;
-            cellDiv.removeEventListener('click', turnMarker);
-        };
-    }
+    //function that adds cell number to player array, turns
 
-    cellDiv.addEventListener('click', turnMarker);
+    const turnCell = (p1, p2) => {
+        if (p1.turn == 0) {
+
+        }
+    }
+    
+    cellDiv.addEventListener('click',);
+
+
 });
 
 (() => {
     return turn = 0;
 })();
 
+
 const randomTurn = (p1, p2) => {
     if (p1.turn > p2.turn) {
         p1.turn = 0;
+        p1.marker = "X";
         p2.turn = 1;
+        p2.marker = "O";
     }
-    if (p1.turn < p2.turn) {
+    else if (p1.turn < p2.turn) {
         p1.turn = 1;
+        p1.marker = "O";
         p2.turn = 0;
+        p2.marker = "X";
     }
 };
+
+randomTurn(p1, p2);
