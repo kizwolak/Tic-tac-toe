@@ -4,7 +4,7 @@ const gameBoard = (() => {
     return ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 })();
 
-const Player = (name, turn) => {
+const Player = (name) => {
     let playerName = name;
     return {playerName};
 };
@@ -14,19 +14,23 @@ gameBoard.forEach(cell => {
     cellDiv.textContent = cell;
     container.appendChild(cellDiv);
 
-    cellDiv.addEventListener('click', () => {
+    const turnMarker = () => {
         if (turn == 0) {
             cellDiv.textContent = "O",
             turn = 1;
+            cellDiv.removeEventListener('click', turnMarker);
         } else if (turn == 1) {
             cellDiv.textContent = "X",
             turn = 0;
+            cellDiv.removeEventListener('click', turnMarker);
         };
-    });
+    }
 
+    cellDiv.addEventListener('click', () => {
+        turnMarker();
+    });
 });
 
 (() => {
     return turn = 0;
-    ;
 })();
