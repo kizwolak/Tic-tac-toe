@@ -49,9 +49,9 @@ const gameplay = (() => {
                 e.target.textContent = currentPlayer.marker;
                 e.target.removeEventListener('click', callback);
                 if (currentPlayer == p1) {
-                    return currentPlayer = p2;
+                     currentPlayer = p2;
                 } else if (currentPlayer == p2) {
-                    return currentPlayer == p1;
+                     currentPlayer = p1;
                 }
             });
         }
