@@ -19,56 +19,47 @@ const Player = (name) => {
 const p1 = Player("Mary");
 const p2 = Player("Jane");
 
-const randomTurn = (p1, p2) => {
-    if (p1.turn > p2.turn) {
-        return p1.turn = 0,
-        p1.marker = "O",
-        p2.turn = 1,
-        p2.marker = "X";
-    } else if (p1.turn < p2.turn) {
-        return p1.turn = 1,
-        p1.marker = "X",
-        p2.turn = 0,
-        p2.marker = "O";
-    };
-};
-
-randomTurn(p1, p2);
+let currentPlayer;
 
 
 const gameplay = (() => {
+
+    const randomTurn = (p1, p2) => {
+        if (p1.turn > p2.turn) {
+            return p1.marker = "O",
+            p2.marker = "X",
+            currentPlayer = p1;
+        } else if (p1.turn < p2.turn) {
+            return p1.marker = "X",
+            currentPlayer = p2,
+            p2.marker = "O";
+        };
+    };
+
     const create = gameBoard.forEach(cell => {
         let cellDiv = document.createElement('div');
         cellDiv.textContent = cell;
         container.appendChild(cellDiv);
     });
-    const playerMove = (e) => {
 
-    };
     const cellEvent = () => {
         for (let i = 0; i < cells.length; i++) {
-            cells[i].addEventListener('click', function(e) {
-                let currentPlayer;
-                if (p1.turn == 0) {
-                    currentPlayer = p1;
-                } else if (p2.turn == 0) {
-                    currentPlayer = p2;
-                }
+            cells[i].addEventListener('click', function callback(e) {
                 currentPlayer.takenCells.push(e.target.textContent);
                 e.target.textContent = currentPlayer.marker;
+                e.target.removeEventListener('click', callback);
                 if (currentPlayer == p1) {
-                    currentPlayer = p2;
+                    return currentPlayer = p2;
                 } else if (currentPlayer == p2) {
-                    currentPlayer == p1
+                    return currentPlayer == p1;
                 }
-                cellDiv.removeEventListener('click', playerMove);
             });
         }
     };
-    return {create, playerMove, cellEvent};
+    return {create, cellEvent, randomTurn};
 })();
 
 let cells = container.querySelectorAll('div');
 
-gameplay.playerMove(p1, p2);
+gameplay.randomTurn(p1, p2);
 gameplay.cellEvent();
