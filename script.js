@@ -1,7 +1,6 @@
 //change of logic. instead of using forEach right away, I will simply querySelectorAll divs and add event listeners to them.
 
 const container = document.querySelector(".container");
-let cells = container.querySelectorAll('div');
 
 const gameBoard = (() => {
     return ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -36,23 +35,6 @@ const randomTurn = (p1, p2) => {
 
 randomTurn(p1, p2);
 
-const playerMove = (p1, p2) => {
-    let currentPlayer;
-    if (p1.turn == 0) {
-        currentPlayer = p1;
-    } else if (p2.turn == 0) {
-        currentPlayer = p2;
-    }
-    currentPlayer.takenCells.push(cellDiv.textContent);
-    cellDiv.textContent = currentPlayer.marker;
-    if (currentPlayer == p1) {
-        currentPlayer = p2;
-    } else if (currentPlayer == p2) {
-        currentPlayer == p1
-    }
-    cellDiv.removeEventListener('click', playerMove);
-};
-
 
 const gameplay = (() => {
     const create = gameBoard.forEach(cell => {
@@ -60,6 +42,33 @@ const gameplay = (() => {
         cellDiv.textContent = cell;
         container.appendChild(cellDiv);
     });
-    return {create};
+    const playerMove = (e) => {
+
+    };
+    const cellEvent = () => {
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].addEventListener('click', function(e) {
+                let currentPlayer;
+                if (p1.turn == 0) {
+                    currentPlayer = p1;
+                } else if (p2.turn == 0) {
+                    currentPlayer = p2;
+                }
+                currentPlayer.takenCells.push(e.target.textContent);
+                e.target.textContent = currentPlayer.marker;
+                if (currentPlayer == p1) {
+                    currentPlayer = p2;
+                } else if (currentPlayer == p2) {
+                    currentPlayer == p1
+                }
+                cellDiv.removeEventListener('click', playerMove);
+            });
+        }
+    };
+    return {create, playerMove, cellEvent};
 })();
 
+let cells = container.querySelectorAll('div');
+
+gameplay.playerMove(p1, p2);
+gameplay.cellEvent();
