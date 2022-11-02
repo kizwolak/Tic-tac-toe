@@ -1,4 +1,7 @@
+//change of logic. instead of using forEach right away, I will simply querySelectorAll divs and add event listeners to them.
+
 const container = document.querySelector(".container");
+let cells = container.querySelectorAll('div');
 
 const gameBoard = (() => {
     return ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -33,30 +36,30 @@ const randomTurn = (p1, p2) => {
 
 randomTurn(p1, p2);
 
-gameBoard.forEach(cell => {
-    let cellDiv = document.createElement('div');
-    cellDiv.textContent = cell;
-    container.appendChild(cellDiv);
+const playerMove = (p1, p2) => {
+    let currentPlayer;
+    if (p1.turn == 0) {
+        currentPlayer = p1;
+    } else if (p2.turn == 0) {
+        currentPlayer = p2;
+    }
+    currentPlayer.takenCells.push(cellDiv.textContent);
+    cellDiv.textContent = currentPlayer.marker;
+    if (currentPlayer == p1) {
+        currentPlayer = p2;
+    } else if (currentPlayer == p2) {
+        currentPlayer == p1
+    }
+    cellDiv.removeEventListener('click', playerMove);
+};
 
 
-    const playerMove = (p1, p2) => {
-        let currentPlayer;
-        if (p1.turn == 0) {
-            currentPlayer = p1;
-        } else if (p2.turn == 0) {
-            currentPlayer = p2;
-        }
-        currentPlayer.takenCells.push(cellDiv.textContent);
-        cellDiv.textContent = currentPlayer.marker;
-        if (currentPlayer == p1) {
-            currentPlayer = p2;
-        } else if (currentPlayer == p2) {
-            currentPlayer == p1
-        }
-        cellDiv.removeEventListener('click', playerMove);
-    };
-
-    cellDiv.addEventListener('click', playerMove(p1, p2));
-});
-
+const gameplay = (() => {
+    const create = gameBoard.forEach(cell => {
+        let cellDiv = document.createElement('div');
+        cellDiv.textContent = cell;
+        container.appendChild(cellDiv);
+    });
+    return {create};
+})();
 
