@@ -60,6 +60,14 @@ const gameplay = (() => {
         }
     };
 
+    const victory1 = (p1) => {
+        console.log(`Congratulations! ${p1.playerName} wins!`);
+    };
+
+    const victory2 = (p2) => {
+        console.log(`Congratulations! ${p2.playerName} wins!`);
+    };
+
     const winCheck = (p1, p2) => {
         const winArrays = {
             1: [1, 2, 3],
@@ -74,27 +82,33 @@ const gameplay = (() => {
         let p1Cells = p1.takenCells.map(Number);
         let p2Cells = p2.takenCells.map(Number);
 
-        const isTruth = (i) => {
+        const isTruth1 = (i) => {
             return winArrays[i].every(cell => {
                 return (p1Cells.includes(cell));
             });
         }
 
         const truthLoop1 = () => {for (let i = 1; i <= 8; i++) {
-            console.log(isTruth(i));
-            if (isTruth(i) == true) {
-                console.log("WIN!");
+            if (isTruth1(i) == true) {
+                victory1(p1);
             }
         }};
 
         truthLoop1();
 
-        //fix this for p2
-        for (let i = 1; i <= 8; i++) {
+        const isTruth2 = (i) => {
             return winArrays[i].every(cell => {
-                return(p2Cells.includes(cell));
+                return (p2Cells.includes(cell));
             });
-        };
+        }
+
+        const truthLoop2 = () => {for (let i = 1; i <= 8; i++) {
+            if (isTruth2(i) == true) {
+                victory2(p2);
+            }
+        }};
+
+        truthLoop2();
         
     };
 
