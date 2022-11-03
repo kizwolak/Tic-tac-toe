@@ -68,17 +68,15 @@ const gameplay = (() => {
             6: [2, 5, 8],
             7: [3, 6, 9],
             8: [3, 5, 7],
+            //One thing I just noticed, your win array has numbers and your takenCells are strings so they won't match when you do .includes.
         };
         let p1Cells = p1.takenCells;
         let p2Cells = p2.takenCells;
-        const truthLoop = () => {
         for (let i = 1; i <= 8; i++) {
             return winArrays[i].every(cell => {
                 return(p1Cells.includes(cell));
             });
-        }};
-        const isTruth = truthLoop();
-        console.log(isTruth);
+        }
 
         if (truthLoop == true) {
             console.log("WIN!!")
