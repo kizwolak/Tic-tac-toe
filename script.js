@@ -72,15 +72,12 @@ const gameplay = (() => {
         const p1Cells = p1.takenCells;
         const p2Cells = p2.takenCells;
 
-        for (let i = 1; i <= 7; i++) {
-            console.log(i);
-            winArrays.i.every(cell => {
-                if (p1.includes(cell)) {
+        for (let i = 1; i <= 8; i++) {
+            winArrays[i].every(cell => {
+                if (p1Cells.includes(cell)) {
                     console.log("win!");
                 }
-                else {
-                    console.log("error!")
-                }
+
             });
         };
         return winArrays;
