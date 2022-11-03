@@ -44,7 +44,6 @@ const gameplay = (() => {
 
     const cellEvent = () => {
         for (let i = 0; i < cells.length; i++) {
-            winCheck(p1, p2);
             cells[i].addEventListener('click', function callback(e) {
                 currentPlayer.takenCells.push(e.target.textContent);
                 e.target.textContent = currentPlayer.marker;
@@ -53,7 +52,8 @@ const gameplay = (() => {
                     currentPlayer = p2;
                 } else if (currentPlayer == p2) {
                     currentPlayer = p1;
-                }
+                };
+                winCheck(p1, p2);
             });
         }
     };
@@ -69,19 +69,20 @@ const gameplay = (() => {
             7: [3, 6, 9],
             8: [3, 5, 7],
         };
-        const p1Cells = p1.takenCells;
-        const p2Cells = p2.takenCells;
-
+        let p1Cells = p1.takenCells;
+        let p2Cells = p2.takenCells;
+        const truthLoop = () => {
         for (let i = 1; i <= 8; i++) {
-            winArrays[i].every(cell => {
-                if (p1Cells.includes(cell)) {
-                    console.log("win!");
-                }
-
+            return winArrays[i].every(cell => {
+                return(p1Cells.includes(cell));
             });
-        };
-        return winArrays;
+        }};
+        const isTruth = truthLoop();
+        console.log(isTruth);
 
+        if (truthLoop == true) {
+            console.log("WIN!!")
+        };
     };
 
 
@@ -102,5 +103,5 @@ const winArrays = {
     5: [1, 4, 7],
     6: [2, 5, 8],
     7: [3, 6, 9],
-    8: [3, 5, 7]
+    8: [3, 5, 7],
 };
