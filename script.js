@@ -19,10 +19,12 @@ const Player = (name) => {
 const p1 = Player("Mary");
 const p2 = Player("Jane");
 
-let currentPlayer;
+
 
 
 const gameplay = (() => {
+
+    let currentPlayer;
 
     const randomTurn = (p1, p2) => {
         if (p1.turn > p2.turn) {
@@ -80,11 +82,14 @@ const gameplay = (() => {
 
         const truthLoop1 = () => {for (let i = 1; i <= 8; i++) {
             console.log(isTruth(i));
-            
+            if (isTruth(i) == true) {
+                console.log("WIN!");
+            }
         }};
 
-        console.log(truthLoop1());
+        truthLoop1();
 
+        //fix this for p2
         for (let i = 1; i <= 8; i++) {
             return winArrays[i].every(cell => {
                 return(p2Cells.includes(cell));
