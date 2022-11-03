@@ -3,7 +3,7 @@
 const container = document.querySelector(".container");
 
 const gameBoard = (() => {
-    return ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9];
 })();
 
 
@@ -44,18 +44,51 @@ const gameplay = (() => {
 
     const cellEvent = () => {
         for (let i = 0; i < cells.length; i++) {
+            winCheck(p1, p2);
             cells[i].addEventListener('click', function callback(e) {
                 currentPlayer.takenCells.push(e.target.textContent);
                 e.target.textContent = currentPlayer.marker;
                 e.target.removeEventListener('click', callback);
                 if (currentPlayer == p1) {
-                     currentPlayer = p2;
+                    currentPlayer = p2;
                 } else if (currentPlayer == p2) {
-                     currentPlayer = p1;
+                    currentPlayer = p1;
                 }
             });
         }
     };
+
+    const winCheck = (p1, p2) => {
+        const winArrays = {
+            1: [1, 2, 3],
+            2: [4, 5, 6],
+            3: [7, 8, 9],
+            4: [1, 5, 9],
+            5: [1, 4, 7],
+            6: [2, 5, 8],
+            7: [3, 6, 9],
+            8: [3, 5, 7],
+        };
+        const p1Cells = p1.takenCells;
+        const p2Cells = p2.takenCells;
+
+        for (let i = 1; i <= 7; i++) {
+            console.log(i);
+            winArrays.i.every(cell => {
+                if (p1.includes(cell)) {
+                    console.log("win!");
+                }
+                else {
+                    console.log("error!")
+                }
+            });
+        };
+        return winArrays;
+
+    };
+
+
+
     return {create, cellEvent, randomTurn};
 })();
 
@@ -63,3 +96,14 @@ let cells = container.querySelectorAll('div');
 
 gameplay.randomTurn(p1, p2);
 gameplay.cellEvent();
+
+const winArrays = {
+    1: [1, 2, 3],
+    2: [4, 5, 6],
+    3: [7, 8, 9],
+    4: [1, 5, 9],
+    5: [1, 4, 7],
+    6: [2, 5, 8],
+    7: [3, 6, 9],
+    8: [3, 5, 7]
+};
