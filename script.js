@@ -115,12 +115,12 @@ const gameplay = (() => {
 })();
 
 
-gameplay.create(gameBoard);
+// gameplay.create(gameBoard);
 
-let cells = container.querySelectorAll('div');
+// let cells = container.querySelectorAll('div');
 
-gameplay.randomTurn(p1, p2);
-gameplay.cellEvent();
+// gameplay.randomTurn(p1, p2);
+// gameplay.cellEvent();
 
 
 
