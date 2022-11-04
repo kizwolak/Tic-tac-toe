@@ -1,5 +1,3 @@
-//change of logic. instead of using forEach right away, I will simply querySelectorAll divs and add event listeners to them.
-
 const container = document.querySelector(".container");
 
 const gameBoard = (() => {
@@ -21,7 +19,6 @@ const p2 = Player("Jane");
 
 
 
-
 const gameplay = (() => {
 
     let currentPlayer;
@@ -38,11 +35,11 @@ const gameplay = (() => {
         };
     };
 
-    const create = gameBoard.forEach(cell => {
+    function create(gameBoard) {gameBoard.forEach(cell => {
         let cellDiv = document.createElement('div');
         cellDiv.textContent = cell;
         container.appendChild(cellDiv);
-    });
+    })};
 
     const cellEvent = () => {
         for (let i = 0; i < cells.length; i++) {
@@ -116,6 +113,9 @@ const gameplay = (() => {
 
     return {create, cellEvent, randomTurn};
 })();
+
+
+gameplay.create(gameBoard);
 
 let cells = container.querySelectorAll('div');
 
