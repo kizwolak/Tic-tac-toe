@@ -1,6 +1,8 @@
 const container = document.querySelector(".container");
 const namesDiv = document.querySelector(".names");
 const nameButton = namesDiv.querySelector("#nameButton");
+let p1;
+let p2;
 
 const gameBoard = (() => {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -15,15 +17,9 @@ const Player = (name) => {
 };
 
 nameButton.addEventListener('click', () => {
-    let name1 = document.querySelector("#name1").value;
-    let name2 = document.querySelector("#name2").value;
-    const p1 = Player(name1);
-    const p2 = Player(name2);
-    return p1,
-    p2;
+    p1 = Player(document.querySelector("#name1").value);
+    p2 = Player(document.querySelector("#name2").value);
 })
-
-
 
 const init = (() => {
     const namesDiv = document.querySelector(".names");
