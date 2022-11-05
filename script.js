@@ -41,6 +41,7 @@ const gameplay = (() => {
 
     function create(gameBoard) {gameBoard.forEach(cell => {
         let cellDiv = document.createElement('div');
+        cellDiv.className = "cellDiv";
         cellDiv.textContent = cell;
         container.appendChild(cellDiv);
     })};
@@ -69,11 +70,17 @@ const gameplay = (() => {
     };
 
     const victory1 = (p1) => {
-        console.log(`Congratulations! ${p1.playerName} wins!`);
+        container.textContent = '';
+        let victory1p = document.createElement('div');
+        victory1p.textContent = `${p1.playerName} wins!`;
+        container.appendChild(victory1p);
     };
 
     const victory2 = (p2) => {
-        console.log(`Congratulations! ${p2.playerName} wins!`);
+        container.textContent = '';
+        let victory2p = document.createElement('div');
+        victory2p.textContent = `${p2.playerName} wins!`;
+        container.appendChild(victory2p);
     };
 
     const winCheck = (p1, p2) => {
@@ -134,7 +141,7 @@ nameButton.addEventListener('click', () => {
     document.querySelector(".names").remove();
     document.querySelector("#title").remove();
     gameplay.create(gameBoard);
-    cells = container.querySelectorAll('div');
+    cells = container.querySelectorAll('.cellDiv');
     gameplay.randomTurn(p1, p2);
     gameplay.cellEvent();
 

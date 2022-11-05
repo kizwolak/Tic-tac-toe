@@ -73,6 +73,14 @@ button:hover {
 }
 
 .container>div { 
+
+}
+
+.container>div:hover {
+    background-color: #D94141;
+}
+
+.cellDiv {
     background-color: #E69739;
     color: transparent;
     border: 1px solid black;
