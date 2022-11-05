@@ -76,10 +76,10 @@ button:hover {
     background-color: #E69739;
     color: transparent;
     border: 1px solid black;
+    border-radius: 0.5em;
     justify-content: center;        
-    width: 100%;
-    height: auto;
-    padding-top: 100%;
+    width: 13em;
+    height: 13em;
     display: flex;
     justify-content: center;
     align-items: center;
