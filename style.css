@@ -1,7 +1,13 @@
+@font-face {
+    font-family: "Julius";
+    src: url(./JuliusSansOne-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Julius";
 }
 
 body {
@@ -11,13 +17,41 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20em;
+    gap: 10em;
+    background-color: #F06D3C;
 }
 
 .names {
     display: flex;
     flex-direction: column;
     gap: 3em;
+    font-size: 2em;
+}
+
+.names>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+div>img {
+    height: 5em;
+    width: 5em;
+}
+
+input[type="text"] {
+    height: 2.5em;
+}
+
+.names>button {
+    font-size: 3.5em;
+    background-color: #F06D3C;
+    border: none;
+}
+
+button:hover {
+    color: white;
 }
 
 #title {
@@ -38,9 +72,15 @@ body {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.container>div {
-    background-color: red;
+.container>div { 
+    background-color: #E69739;
     color: transparent;
     border: 1px solid black;
+    justify-content: center;        
+    width: 100%;
+    height: auto;
+    padding-top: 100%;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }

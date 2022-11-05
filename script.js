@@ -42,9 +42,6 @@ const gameplay = (() => {
     function create(gameBoard) {gameBoard.forEach(cell => {
         let cellDiv = document.createElement('div');
         cellDiv.textContent = cell;
-        cellDiv.style.width = "100%";
-        cellDiv.style.height = "0";
-        cellDiv.style.paddingTop = "100%";
         container.appendChild(cellDiv);
     })};
 
@@ -52,12 +49,10 @@ const gameplay = (() => {
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener('click', function callback(e) {
                 let img = document.createElement("img");
-                img.style.height = "50%";
-                img.style.width = "50%";
                 if (currentPlayer.marker == "X") {
-                    img.src = "X.png";
+                    img.src = "./X.png";
                 } else if (currentPlayer.marker == "O") {
-                    img.src = "O.png";
+                    img.src = "./O.png";
                 };
                 currentPlayer.takenCells.push(e.target.textContent);
                 e.target.textContent = '';
