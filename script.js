@@ -48,9 +48,15 @@ const gameplay = (() => {
     const cellEvent = () => {
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener('click', function callback(e) {
+                let img = document.createElement("img");
+                if (currentPlayer.marker == "X") {
+                    img.src = "X.png";
+                } else if (currentPlayer.marker == "O") {
+                    img.src = "O.png";
+                };
                 currentPlayer.takenCells.push(e.target.textContent);
-                e.target.textContent = currentPlayer.marker;
-                e.target.style.color = "black";
+                e.target.textContent = '';
+                e.target.appendChild(img);
                 e.target.removeEventListener('click', callback);
                 if (currentPlayer == p1) {
                     currentPlayer = p2;
