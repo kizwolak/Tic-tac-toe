@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const namesDiv = document.querySelector(".names");
 const nameButton = namesDiv.querySelector("#nameButton");
+let cells;
 let p1;
 let p2;
 
@@ -16,10 +17,6 @@ const Player = (name) => {
     return {playerName, turn, takenCells, marker};
 };
 
-nameButton.addEventListener('click', () => {
-    p1 = Player(document.querySelector("#name1").value);
-    p2 = Player(document.querySelector("#name2").value);
-})
 
 const init = (() => {
     const namesDiv = document.querySelector(".names");
@@ -53,6 +50,7 @@ const gameplay = (() => {
             cells[i].addEventListener('click', function callback(e) {
                 currentPlayer.takenCells.push(e.target.textContent);
                 e.target.textContent = currentPlayer.marker;
+                e.target.style.color = "black";
                 e.target.removeEventListener('click', callback);
                 if (currentPlayer == p1) {
                     currentPlayer = p2;
@@ -120,6 +118,22 @@ const gameplay = (() => {
 
     return {create, cellEvent, randomTurn};
 })();
+
+
+nameButton.addEventListener('click', () => {
+    p1 = Player(document.querySelector("#name1").value);
+    p2 = Player(document.querySelector("#name2").value);
+    document.querySelector("#name1").value = '';
+    document.querySelector("#name2").value = '';
+    document.querySelector(".names").remove();
+    document.querySelector("#title").remove();
+    gameplay.create(gameBoard);
+    cells = container.querySelectorAll('div');
+    gameplay.randomTurn(p1, p2);
+    gameplay.cellEvent();
+
+});
+
 
 
 // gameplay.create(gameBoard);
