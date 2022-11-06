@@ -39,7 +39,8 @@ const gameplay = (() => {
         };
     };
 
-    function create(gameBoard) {gameBoard.forEach(cell => {
+    function create(gameBoard) {
+        gameBoard.forEach(cell => {
         let cellDiv = document.createElement('div');
         cellDiv.className = "cellDiv";
         cellDiv.textContent = cell;
@@ -74,9 +75,30 @@ const gameplay = (() => {
         container.style.display = "flex";
         container.style.justifyContent = "center";
         container.style.alignItems = "center";
+        container.style.flexDirection = "column";
+        container.style.gap = "10em";
     }
 
-    
+    const newGame = () => {
+        let question = document.createElement("div");
+        question.textContent = "Another one?";
+        container.appendChild(question);
+        question.className = "question";
+        let yes = document.createElement("button");
+        yes.className = "answer";
+        yes.textContent = "YES, PLEASE!";
+        container.appendChild(yes);
+        const generateNew = (p1, p2) => {
+            containerClear(container);
+            p1.takenCells = [];
+            p2.takenCells = [];
+            gameplay.create(gameBoard);
+            cells = container.querySelectorAll('.cellDiv');
+            gameplay.randomTurn(p1, p2);
+            gameplay.cellEvent();
+        };
+        yes.addEventListener('click', function(){generateNew(p1, p2)});
+    }
 
     const victory1 = (p1) => {
         containerClear(container);
@@ -84,6 +106,7 @@ const gameplay = (() => {
         victory1p.textContent = `${p1.playerName} wins!`;
         victory1p.className = "victory1";
         container.appendChild(victory1p);
+        newGame();
     };
 
     const victory2 = (p2) => {
@@ -92,6 +115,7 @@ const gameplay = (() => {
         victory2p.className = "victory2";
         victory2p.textContent = `${p2.playerName} wins!`;
         container.appendChild(victory2p);
+        newGame();
     };
 
     const winCheck = (p1, p2) => {
@@ -160,12 +184,6 @@ nameButton.addEventListener('click', () => {
 
 
 
-// gameplay.create(gameBoard);
-
-// let cells = container.querySelectorAll('div');
-
-// gameplay.randomTurn(p1, p2);
-// gameplay.cellEvent();
 
 
 

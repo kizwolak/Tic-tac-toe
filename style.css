@@ -72,10 +72,21 @@ button:hover {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.container>.victory1, .victory2 {
+.victory1, .victory2 {
     font-size: 5em; 
+    margin-top: -20%;
 }
 
+.question {
+    font-size: 4em;
+    margin-top: 0%;
+}
+
+.answer {
+    font-size: 4em;
+    background-color: transparent;
+    border: none;
+}
 
 .cellDiv {
     background-color: #E69739;
