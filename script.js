@@ -96,6 +96,11 @@ const gameplay = (() => {
             cells = container.querySelectorAll('.cellDiv');
             gameplay.randomTurn(p1, p2);
             gameplay.cellEvent();
+            container.style.display = "grid";
+            container.style.justifyContent = "";
+            container.style.alignItems = "";
+            container.style.flexDirection = "";
+            container.style.gap = "";
         };
         yes.addEventListener('click', function(){generateNew(p1, p2)});
     }
