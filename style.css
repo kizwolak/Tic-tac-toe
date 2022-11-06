@@ -72,13 +72,10 @@ button:hover {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.container>div { 
-
+.container>.victory1, .victory2 {
+    font-size: 5em; 
 }
 
-.container>div:hover {
-    background-color: #D94141;
-}
 
 .cellDiv {
     background-color: #E69739;

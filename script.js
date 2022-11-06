@@ -69,16 +69,27 @@ const gameplay = (() => {
         }
     };
 
-    const victory1 = (p1) => {
+    const containerClear = (container) => {
         container.textContent = '';
+        container.style.display = "flex";
+        container.style.justifyContent = "center";
+        container.style.alignItems = "center";
+    }
+
+    
+
+    const victory1 = (p1) => {
+        containerClear(container);
         let victory1p = document.createElement('div');
         victory1p.textContent = `${p1.playerName} wins!`;
+        victory1p.className = "victory1";
         container.appendChild(victory1p);
     };
 
     const victory2 = (p2) => {
-        container.textContent = '';
+        containerClear(container);
         let victory2p = document.createElement('div');
+        victory2p.className = "victory2";
         victory2p.textContent = `${p2.playerName} wins!`;
         container.appendChild(victory2p);
     };
